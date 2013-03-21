@@ -52,6 +52,21 @@ class TestFromActiveRecordHash < Test::Unit::TestCase
     assert_equal(hash, ar.connection_string.to_hash)
   end
 
+  def test_defaults_do_not_overwrite
+    ar = SQLAnywhereConnectionString::ActiveRecord.new
+    hash = {
+      DBN: 'demo',
+      Server: 'emod',
+      UID: 'ABD',
+      PWD: 'lqs',
+      CS: 'windows-1252',
+      Idle: '20',
+    }
+    ar.add(hash)
+    ar.add_defaults
+    assert_equal(hash, ar.connection_string.to_hash)
+  end
+
   def test_add_connection_string
     ar = SQLAnywhereConnectionString::ActiveRecord.new
     cs = "Server=demo12;DBN=demo;UID=DBA;PWD=sql"
