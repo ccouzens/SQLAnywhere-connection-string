@@ -2,7 +2,7 @@ require 'test/unit'
 require_relative '../lib/sqlanywhere_connection_string'
 
 class TestFromHashToString < Test::Unit::TestCase
-	def test_empty_hash
+  def test_empty_hash
     cs = SQLAnywhereConnectionString.new
     cs.add({})
     assert_equal("", cs.to_s)
