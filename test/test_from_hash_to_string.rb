@@ -1,10 +1,10 @@
 require 'test/unit'
-require_relative '../lib/SQLAnywhereConnectionString'
+require_relative '../lib/sqlanywhere_connection_string'
 
 class TestFromHashToString < Test::Unit::TestCase
 	def test_empty_hash
     cs = SQLAnywhereConnectionString.new
-    cs.add {}
+    cs.add({})
     assert_equal("", cs.to_s)
 	end
 
@@ -13,7 +13,7 @@ class TestFromHashToString < Test::Unit::TestCase
     cs.add({
       Server: 'demo12',
       DBN: 'demo',
-      UID: 'dba',
+      UID: 'DBA',
       PWD: 'sql',
       })
     assert_equal("Server=demo12;DBN=demo;UID=DBA;PWD=sql", cs.to_s)
