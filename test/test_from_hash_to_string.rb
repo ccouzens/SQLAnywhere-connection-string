@@ -34,4 +34,26 @@ class TestFromHashToString < Test::Unit::TestCase
       })
     assert_equal('UID=semi;colon', cs.to_s)
   end
+
+  def test_later_adds_override
+    cs = SQLAnywhereConnectionString.new
+    cs.add({
+      Server: 'demo12',
+      })
+    cs.add({
+      Server: 'demo13',
+      })
+    assert_equal('Server=demo13', cs.to_s)
+  end
+
+  def test_later_adds_merge
+    cs = SQLAnywhereConnectionString.new
+    cs.add({
+      UID: 'dba',
+      })
+    cs.add({
+      PWD: 'sql',
+      })
+    assert_equal('UID=dba;PWD=sql', cs.to_s)
+  end
 end
