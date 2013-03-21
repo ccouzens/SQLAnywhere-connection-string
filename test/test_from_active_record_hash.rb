@@ -21,6 +21,12 @@ class TestFromActiveRecordHash < Test::Unit::TestCase
     assert_equal(cs, ar.to_s)
   end
 
+  def test_parameter_keys_can_be_strings
+    ar = SQLAnywhereConnectionString::ActiveRecord.new
+    ar.add('username' => 'DBA')
+    assert_equal("UID=DBA", ar.to_s)
+  end
+
   def test_pop_username
     ar = SQLAnywhereConnectionString::ActiveRecord.new
     ar.add({ username: 'DBA' })
