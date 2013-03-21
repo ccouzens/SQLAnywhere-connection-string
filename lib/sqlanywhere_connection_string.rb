@@ -29,10 +29,8 @@ class SQLAnywhereConnectionString
   private
   def from_s connection_string
     key_value_pairs = connection_string.split(';')
-    key_value_pairs.map! do |key_value_pair|
-      key_value_pair.split('=', 2)
-    end
-    key_value_pairs.each do |key, value|
+    key_value_pairs.each do |key_value_pair|
+      key, value = key_value_pair.split('=', 2)
       self.parameters[key.to_sym] = value
     end
   end
